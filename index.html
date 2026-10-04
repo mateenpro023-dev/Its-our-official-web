@@ -87,18 +87,49 @@
     section{padding:65px 0}
     .memory-placeholders .card{transform:none !important}
   }
+
+  /* Mini letter + fun customization */
+  .mini-letter-section{padding-top:70px}
+  .letter-box{max-width:760px;margin:auto;text-align:center;position:relative;overflow:hidden}
+  .letter-box::before{content:"♡";position:absolute;right:24px;top:15px;font-size:5rem;color:rgba(255,143,177,.08);transform:rotate(15deg)}
+  .letter-btn{font-size:1rem;letter-spacing:.04em;transition:transform .2s ease,box-shadow .2s ease}
+  .letter-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,143,177,.22)}
+  .letter-paper{display:none;margin-top:25px;padding:42px 38px;text-align:left;border:1px solid rgba(255,255,255,.16);border-radius:22px;
+    background:linear-gradient(135deg,rgba(255,247,250,.98),rgba(255,230,239,.96));color:#3d2630;box-shadow:0 25px 70px rgba(0,0,0,.28);transform:rotate(-.5deg)}
+  .letter-paper.open{display:block;animation:letterOpen .55s ease both}
+  .letter-paper h3{margin:0 0 20px;color:#b83d67;font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-size:1.7rem}
+  .letter-paper p{color:#4b333d;line-height:1.95;font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-size:1.02rem;margin:0 0 15px}
+  .letter-sign{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;text-align:right;color:#b83d67;font-weight:700;margin-top:22px}
+  @keyframes letterOpen{from{opacity:0;transform:translateY(12px) rotate(-2deg) scale(.98)}to{opacity:1;transform:translateY(0) rotate(-.5deg) scale(1)}}
+  .fun-customizer{position:fixed;left:16px;bottom:16px;z-index:9999}
+  .fun-toggle{width:52px;height:52px;padding:0;border:1px solid rgba(255,255,255,.2);background:rgba(18,10,16,.9);color:#fff;box-shadow:0 12px 35px rgba(0,0,0,.35);backdrop-filter:blur(12px);font-size:1.25rem}
+  .fun-panel{display:none;width:245px;margin-bottom:10px;padding:16px;border:1px solid var(--line);border-radius:20px;background:rgba(15,9,14,.95);box-shadow:0 18px 55px rgba(0,0,0,.45);backdrop-filter:blur(18px)}
+  .fun-panel.open{display:block;animation:funIn .2s ease both}
+  .fun-panel h4{margin:0 0 12px;color:#fff;font-size:1rem}
+  .fun-row{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 13px}
+  .fun-row button{padding:8px 11px;font-size:.78rem;background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.13)}
+  .fun-row button:hover{background:rgba(255,143,177,.2)}
+  .fun-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  body.fun-soft{--accent:#7ed7ff;--accent2:#c7efff}
+  body.fun-purple{--accent:#c69cff;--accent2:#e5d3ff}
+  body.fun-gold{--accent:#ffd36e;--accent2:#ffe9aa}
+  body.fun-green{--accent:#79e3b1;--accent2:#c4f8dc}
+  body.fun-wide .wrap{width:min(1180px,94%)}
+  body.fun-cozy section{padding-top:65px;padding-bottom:65px}
+  body.fun-cozy .card{border-radius:36px}
+  body.fun-neon{background:radial-gradient(circle at 20% 10%,rgba(0,255,200,.14),transparent 28%),radial-gradient(circle at 85% 30%,rgba(255,0,180,.15),transparent 28%),linear-gradient(145deg,#05070b,#0d0714 50%,#06060a)}
+  @keyframes funIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow">for my Sajuu ♡</div>
+    <div class="eyebrow">mateejas Pagal khana</div>
     <h1>OUR STORY</h1>
     <p>
-      For my meri jaan, my jannuu, my Sajuu.
-      I made this little corner of the internet just to remind you that you matter to me
-      more than you probably realise.
+      HEyy welcome to small corner of internet of sajeelaa and mateen where we share all our stuff and memories....HEHE MAZA AYE GA!!!!
     </p>
     <div class="pill">bhondi • meri jaan • jannuu • Sajuu</div>
   </div>
@@ -260,6 +291,56 @@
 
 </main>
 
+
+<section class="mini-letter-section">
+  <div class="wrap">
+    <div class="card letter-box">
+      <div class="eyebrow">a tiny secret</div>
+      <h2>Mini Letter 💌</h2>
+      <p>there's something waiting for you...</p>
+      <button class="letter-btn" id="letterBtn" type="button">💌 Click to open</button>
+      <div class="letter-paper" id="letterPaper">
+        <h3>SAJEELLAAA,</h3>
+        <p>Whenever you see this website, just know i LOVEE YOUU SO MUCHH and you are the best person i have ever met. Like genuinely, how did i get this lucky to have someone like you in my life?? 😭❤️</p>
+        <p>TUM SAB se achi ho. I mean it. You have this stupidly special place in my heart that nobody else can even come close to. You make the most random moments feel important, and somehow even doing absolutely nothing with you feels like a whole memory i want to keep forever.</p>
+        <p>I hope whenever you come back here and click this little letter, you remember that there is someone on the other side who is always rooting for you, laughing at your pagal moments, missing you like a loser, and thinking about you wayyy more than he should. And yes, i will continue annoying you because unfortunately for you, you are stuck with me now. 😭</p>
+        <p>There are so many things i could write about you that this tiny website would probably need its own sequel. I love your silly side, your cute side, your dramatic side, your random side, and even the side that makes me go "SAJEE WHAT ARE YOU DOINGGG". Every version of you is still my favourite.</p>
+        <p>So whenever life gets annoying, whenever you feel like nobody gets you, or whenever you just need a reminder that you matter, come back here. Read this again. And remember that somewhere in this ridiculous little corner of the internet, there is a very pagal Mateen who cares about you a LOTTT.</p>
+        <p>Okai? No arguing. No "shut up". Just accept the love and move on hehe. I want us to keep collecting memories, stupid jokes, late-night conversations, random pictures, and all the little things that somehow become our favourite stories.</p>
+        <p>And one day, when we look back at all this, i hope we laugh at how dramatic and cheesy we were. But honestly? I would still choose this. I would still choose you. Every time.</p>
+        <div class="letter-sign">Yours, always a little pagal,<br>Mateen ♡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fun-customizer" aria-label="Fun customization controls">
+  <div class="fun-panel" id="funPanel">
+    <h4>✨ Make it your vibe</h4>
+    <div class="fun-label">colour</div>
+    <div class="fun-row">
+      <button type="button" data-theme="pink">Pink</button>
+      <button type="button" data-theme="soft">Sky</button>
+      <button type="button" data-theme="purple">Purple</button>
+      <button type="button" data-theme="gold">Gold</button>
+      <button type="button" data-theme="green">Mint</button>
+    </div>
+    <div class="fun-label">layout</div>
+    <div class="fun-row">
+      <button type="button" data-layout="normal">Normal</button>
+      <button type="button" data-layout="wide">Wide</button>
+      <button type="button" data-layout="cozy">Cozy</button>
+      <button type="button" data-layout="neon">Neon</button>
+    </div>
+    <div class="fun-label">little extras</div>
+    <div class="fun-row">
+      <button type="button" id="funTop">↑ Top</button>
+      <button type="button" id="funLetter">💌 Letter</button>
+    </div>
+  </div>
+  <button class="fun-toggle" id="funToggle" type="button" aria-label="Open customization menu">✨</button>
+</div>
+
 <footer></footer>
 
 <script>
@@ -328,6 +409,37 @@
     const lovePercent = 80 + n;
     document.getElementById("compatResult").textContent=`Mateen + ${her} = ${lovePercent}% ♡`;
   }
+
+  // Mini letter
+  const letterBtn = document.getElementById("letterBtn");
+  const letterPaper = document.getElementById("letterPaper");
+  letterBtn.addEventListener("click",()=>{
+    const open=letterPaper.classList.toggle("open");
+    letterBtn.textContent=open ? "💌 Close letter" : "💌 Click to open";
+  });
+
+  // One-click fun customizer
+  const funPanel=document.getElementById("funPanel");
+  document.getElementById("funToggle").addEventListener("click",()=>funPanel.classList.toggle("open"));
+  const themeClasses=["fun-soft","fun-purple","fun-gold","fun-green","fun-neon"];
+  document.querySelectorAll("[data-theme]").forEach(btn=>btn.addEventListener("click",()=>{
+    document.body.classList.remove(...themeClasses);
+    if(btn.dataset.theme!=="pink") document.body.classList.add("fun-"+btn.dataset.theme);
+  }));
+  document.querySelectorAll("[data-layout]").forEach(btn=>btn.addEventListener("click",()=>{
+    document.body.classList.remove("fun-wide","fun-cozy","fun-neon");
+    if(btn.dataset.layout==="wide") document.body.classList.add("fun-wide");
+    if(btn.dataset.layout==="cozy") document.body.classList.add("fun-cozy");
+    if(btn.dataset.layout==="neon") document.body.classList.add("fun-neon");
+  }));
+  document.getElementById("funTop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+  document.getElementById("funLetter").addEventListener("click",()=>{
+    letterPaper.classList.add("open");
+    letterBtn.textContent="💌 Close letter";
+    letterPaper.scrollIntoView({behavior:"smooth",block:"center"});
+    funPanel.classList.remove("open");
+  });
+
 </script>
 </body>
 </html>
