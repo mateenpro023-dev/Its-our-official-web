@@ -10,7 +10,7 @@
     --text:#fff8fb; --muted:#cbbfc6; --accent:#ff8fb1; --accent2:#ffc5d5;
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
   body{
     margin:0;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
     background:
@@ -81,6 +81,28 @@
   /* Sep 4, 2026 in Pakistan: Third Quarter. */
   .moon:after{content:"";position:absolute;inset:0;border-radius:50%;background:#0a080d;transform:translateX(48%);}
   footer{text-align:center;padding:50px 0 80px;color:#9c9098}
+
+  .site-nav{position:sticky;top:0;z-index:1000;background:rgba(9,7,11,.82);border-bottom:1px solid var(--line);backdrop-filter:blur(18px);box-shadow:0 8px 30px rgba(0,0,0,.18)}
+  .nav-inner{width:min(1180px,94%);margin:auto;display:flex;align-items:center;gap:18px;min-height:64px}
+  .nav-brand{color:#fff;text-decoration:none;font-weight:900;letter-spacing:.08em;white-space:nowrap}
+  .nav-links{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:7px 0}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{color:var(--muted);text-decoration:none;border:1px solid transparent;border-radius:999px;padding:9px 13px;font-size:.84rem;white-space:nowrap;transition:.2s ease}
+  .nav-links a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.07)}
+  .games-section{padding-top:75px}
+  .games-head{text-align:center;max-width:760px;margin:0 auto 30px}
+  .game-tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0}
+  .game-tabs button.active{box-shadow:0 0 0 2px rgba(255,255,255,.16),0 12px 35px rgba(255,143,177,.2)}
+  .question-card{max-width:850px;margin:auto;text-align:center;min-height:330px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+  .question-number{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .question-text{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-size:clamp(1.35rem,3vw,2rem);line-height:1.5;color:#fff;max-width:720px;margin:0 auto 24px}
+  .question-meta{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+  .question-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .history-note{margin-top:18px;color:#9f9199;font-size:.82rem}
+  .wyr-option{font-size:1.05rem;line-height:1.5;padding:18px 20px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;transition:.2s ease}
+  .wyr-option:hover{transform:translateY(-3px);background:rgba(255,143,177,.12);border-color:rgba(255,143,177,.35)}
+  .wyr-result{margin-top:20px;min-height:28px;color:var(--accent2);font-weight:700}
+  @media(max-width:750px){.nav-inner{display:block;padding:8px 0}.nav-brand{display:block;margin:0 0 6px 4px}.nav-links{padding-bottom:3px}.question-card{min-height:360px}}
   @media(max-width:750px){
     .grid,.reason-grid,.memory-placeholders{grid-template-columns:1fr !important}
     .counter{grid-template-columns:repeat(2,1fr)}
@@ -88,7 +110,7 @@
     .memory-placeholders .card{transform:none !important}
   }
 
-  /* Mini letter + fun customization */
+  /* Mini letter */
   .mini-letter-section{padding-top:70px}
   .letter-box{max-width:760px;margin:auto;text-align:center;position:relative;overflow:hidden}
   .letter-box::before{content:"♡";position:absolute;right:24px;top:15px;font-size:5rem;color:rgba(255,143,177,.08);transform:rotate(15deg)}
@@ -101,30 +123,29 @@
   .letter-paper p{color:#4b333d;line-height:1.95;font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;font-size:1.02rem;margin:0 0 15px}
   .letter-sign{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;text-align:right;color:#b83d67;font-weight:700;margin-top:22px}
   @keyframes letterOpen{from{opacity:0;transform:translateY(12px) rotate(-2deg) scale(.98)}to{opacity:1;transform:translateY(0) rotate(-.5deg) scale(1)}}
-  .fun-customizer{position:fixed;left:16px;bottom:16px;z-index:9999}
-  .fun-toggle{width:52px;height:52px;padding:0;border:1px solid rgba(255,255,255,.2);background:rgba(18,10,16,.9);color:#fff;box-shadow:0 12px 35px rgba(0,0,0,.35);backdrop-filter:blur(12px);font-size:1.25rem}
-  .fun-panel{display:none;width:245px;margin-bottom:10px;padding:16px;border:1px solid var(--line);border-radius:20px;background:rgba(15,9,14,.95);box-shadow:0 18px 55px rgba(0,0,0,.45);backdrop-filter:blur(18px)}
-  .fun-panel.open{display:block;animation:funIn .2s ease both}
-  .fun-panel h4{margin:0 0 12px;color:#fff;font-size:1rem}
-  .fun-row{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 13px}
-  .fun-row button{padding:8px 11px;font-size:.78rem;background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.13)}
-  .fun-row button:hover{background:rgba(255,143,177,.2)}
-  .fun-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-  body.fun-soft{--accent:#7ed7ff;--accent2:#c7efff}
-  body.fun-purple{--accent:#c69cff;--accent2:#e5d3ff}
-  body.fun-gold{--accent:#ffd36e;--accent2:#ffe9aa}
-  body.fun-green{--accent:#79e3b1;--accent2:#c4f8dc}
-  body.fun-wide .wrap{width:min(1180px,94%)}
-  body.fun-cozy section{padding-top:65px;padding-bottom:65px}
-  body.fun-cozy .card{border-radius:36px}
-  body.fun-neon{background:radial-gradient(circle at 20% 10%,rgba(0,255,200,.14),transparent 28%),radial-gradient(circle at 85% 30%,rgba(255,0,180,.15),transparent 28%),linear-gradient(145deg,#05070b,#0d0714 50%,#06060a)}
-  @keyframes funIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
 </style>
 </head>
 <body>
 
-<header class="hero">
+
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#home">♡ MATEEJAS</a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#love">Things I love about you</a>
+      <a href="#wheel-section">Spin the wheel</a>
+      <a href="#music">Music</a>
+      <a href="#memories">Memories</a>
+      <a href="#letter">Mini Letter</a>
+      <a href="#games">Games</a>
+      <a href="#october">October 3</a>
+    </div>
+  </div>
+</nav>
+
+<header id="home" class="hero">
   <div class="wrap">
     <div class="eyebrow">mateejas Pagal khana</div>
     <h1>OUR STORY</h1>
@@ -160,7 +181,7 @@
   </div>
 </section>
 
-<section>
+<section id="love">
   <div class="wrap">
     <div class="eyebrow">little things</div>
     <h2>Things I love about you</h2>
@@ -175,7 +196,7 @@
   </div>
 </section>
 
-<section>
+<section id="wheel-section">
   <div class="wrap">
     <div class="card wheel-wrap">
       <div class="eyebrow">pick your little surprise</div>
@@ -203,7 +224,7 @@
   </div>
 </section>
 
-<section>
+<section id="music">
   <div class="wrap">
     <div class="eyebrow">songs that remind me of you</div>
     <h2>Press play, meri jaan.</h2>
@@ -226,7 +247,7 @@
   </div>
 </section>
 
-<section>
+<section id="memories">
   <div class="wrap">
     <div class="grid">
       <div class="card">
@@ -254,7 +275,7 @@
   </div>
 </section>
 
-<section>
+<section id="october">
   <div class="wrap">
     <div style="text-align:center;margin-top:20px;">
       <div class="eyebrow">OCTOBER 3 2026</div>
@@ -292,7 +313,7 @@
 </main>
 
 
-<section class="mini-letter-section">
+<section id="letter" class="mini-letter-section">
   <div class="wrap">
     <div class="card letter-box">
       <div class="eyebrow">a tiny secret</div>
@@ -314,32 +335,51 @@
   </div>
 </section>
 
-<div class="fun-customizer" aria-label="Fun customization controls">
-  <div class="fun-panel" id="funPanel">
-    <h4>✨ Make it your vibe</h4>
-    <div class="fun-label">colour</div>
-    <div class="fun-row">
-      <button type="button" data-theme="pink">Pink</button>
-      <button type="button" data-theme="soft">Sky</button>
-      <button type="button" data-theme="purple">Purple</button>
-      <button type="button" data-theme="gold">Gold</button>
-      <button type="button" data-theme="green">Mint</button>
+
+
+<section id="games" class="games-section">
+  <div class="wrap">
+    <div class="games-head">
+      <div class="eyebrow">after the letter ✦</div>
+      <h2>Pagal Questions & Games 🎮</h2>
+      <p>Pick a vibe, press the button, and let the website choose something random for you two. There are 120 questions plus a whole Would You Rather deck.</p>
     </div>
-    <div class="fun-label">layout</div>
-    <div class="fun-row">
-      <button type="button" data-layout="normal">Normal</button>
-      <button type="button" data-layout="wide">Wide</button>
-      <button type="button" data-layout="cozy">Cozy</button>
-      <button type="button" data-layout="neon">Neon</button>
+
+    <div class="card">
+      <div class="game-tabs" id="questionTabs">
+        <button type="button" class="active" data-qcat="All">All 120</button>
+        <button type="button" data-qcat="Love">Love 💗</button>
+        <button type="button" data-qcat="Social">Social 🫶</button>
+        <button type="button" data-qcat="Faith">Faith ☪️</button>
+        <button type="button" data-game="wyr">Would You Rather 😭</button>
+      </div>
     </div>
-    <div class="fun-label">little extras</div>
-    <div class="fun-row">
-      <button type="button" id="funTop">↑ Top</button>
-      <button type="button" id="funLetter">💌 Letter</button>
+
+    <div class="card question-card" id="randomQuestionCard" style="margin-top:18px;">
+      <div class="question-number" id="questionNumber">QUESTION 1 / 120</div>
+      <div class="question-meta" id="questionCategory">Love</div>
+      <div class="question-text" id="questionText">Click below to get a random question.</div>
+      <div class="question-actions">
+        <button type="button" id="nextQuestion">🎲 Random question</button>
+        <button type="button" id="shuffleAgain">✨ Surprise me</button>
+      </div>
+      <div class="history-note" id="questionHistory">No questions asked yet.</div>
+    </div>
+
+    <div class="card question-card" id="wyrCard" style="display:none;margin-top:18px;">
+      <div class="question-number" id="wyrNumber">WOULD YOU RATHER 1 / 50</div>
+      <div class="question-meta">Pick one — no overthinking 😭</div>
+      <div class="question-text" id="wyrText">Would you rather...?</div>
+      <div class="question-actions">
+        <button type="button" class="wyr-option" id="wyrA">Option A</button>
+        <button type="button" class="wyr-option" id="wyrB">Option B</button>
+      </div>
+      <div class="wyr-result" id="wyrResult"></div>
+      <div class="question-actions" style="margin-top:12px;"><button type="button" id="nextWyr">🎲 Another one</button></div>
     </div>
   </div>
-  <button class="fun-toggle" id="funToggle" type="button" aria-label="Open customization menu">✨</button>
-</div>
+</section>
+
 
 <footer></footer>
 
@@ -418,28 +458,92 @@
     letterBtn.textContent=open ? "💌 Close letter" : "💌 Click to open";
   });
 
-  // One-click fun customizer
-  const funPanel=document.getElementById("funPanel");
-  document.getElementById("funToggle").addEventListener("click",()=>funPanel.classList.toggle("open"));
-  const themeClasses=["fun-soft","fun-purple","fun-gold","fun-green","fun-neon"];
-  document.querySelectorAll("[data-theme]").forEach(btn=>btn.addEventListener("click",()=>{
-    document.body.classList.remove(...themeClasses);
-    if(btn.dataset.theme!=="pink") document.body.classList.add("fun-"+btn.dataset.theme);
-  }));
-  document.querySelectorAll("[data-layout]").forEach(btn=>btn.addEventListener("click",()=>{
-    document.body.classList.remove("fun-wide","fun-cozy","fun-neon");
-    if(btn.dataset.layout==="wide") document.body.classList.add("fun-wide");
-    if(btn.dataset.layout==="cozy") document.body.classList.add("fun-cozy");
-    if(btn.dataset.layout==="neon") document.body.classList.add("fun-neon");
-  }));
-  document.getElementById("funTop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
-  document.getElementById("funLetter").addEventListener("click",()=>{
-    letterPaper.classList.add("open");
-    letterBtn.textContent="💌 Close letter";
-    letterPaper.scrollIntoView({behavior:"smooth",block:"center"});
-    funPanel.classList.remove("open");
-  });
+
 
 </script>
+<script>
+  const questionDeck = [{"q": "What was the first little thing about me that made you think I was different?", "cat": "Love"}, {"q": "What is your favourite memory of us so far?", "cat": "Love"}, {"q": "What is one tiny thing I do that secretly makes you smile?", "cat": "Love"}, {"q": "When did you first realise you were getting attached to me?", "cat": "Love"}, {"q": "What nickname from me makes you happiest?", "cat": "Love"}, {"q": "What is one date idea you would genuinely love us to try?", "cat": "Love"}, {"q": "What song feels the most like us right now?", "cat": "Love"}, {"q": "What is one random picture of us that you would never delete?", "cat": "Love"}, {"q": "What is your favourite kind of late-night conversation with me?", "cat": "Love"}, {"q": "What is something about me you think I underestimate?", "cat": "Love"}, {"q": "What is one thing you hope we still do together years from now?", "cat": "Love"}, {"q": "What is your favourite way for us to make up after a silly argument?", "cat": "Love"}, {"q": "What is one compliment from me that you remember?", "cat": "Love"}, {"q": "What is the cutest thing I have done without realising it?", "cat": "Love"}, {"q": "If we had one completely free day together, how would you spend it?", "cat": "Love"}, {"q": "What is one place you want us to visit together?", "cat": "Love"}, {"q": "What is one food you would insist we share on a date?", "cat": "Love"}, {"q": "What is your favourite version of me: sleepy, excited, serious, silly, or pagal?", "cat": "Love"}, {"q": "What is one inside joke you think we will still laugh about later?", "cat": "Love"}, {"q": "What is one habit of mine you secretly find adorable?", "cat": "Love"}, {"q": "What makes you feel most understood by me?", "cat": "Love"}, {"q": "What is one thing you want me to remind you of whenever you are stressed?", "cat": "Love"}, {"q": "What is one future memory you would love us to create?", "cat": "Love"}, {"q": "What is your ideal lazy day with me?", "cat": "Love"}, {"q": "What is one thing we should never stop doing for each other?", "cat": "Love"}, {"q": "When do you feel closest to me?", "cat": "Love"}, {"q": "What is one small surprise that would instantly make your day?", "cat": "Love"}, {"q": "What is one thing about our relationship that feels easy and natural?", "cat": "Love"}, {"q": "What is one thing you want us to learn together?", "cat": "Love"}, {"q": "What is your favourite kind of affection: words, time, gifts, help, or hugs?", "cat": "Love"}, {"q": "What is one message from me you would happily reread forever?", "cat": "Love"}, {"q": "What is something you want us to laugh about when we are old?", "cat": "Love"}, {"q": "If our relationship had a movie title, what would it be?", "cat": "Love"}, {"q": "What is one silly tradition we should start?", "cat": "Love"}, {"q": "What is something you want to tell me more often?", "cat": "Love"}, {"q": "What makes you feel safest with me?", "cat": "Love"}, {"q": "What is one challenge you think we could handle better as a team?", "cat": "Love"}, {"q": "What is one thing you think makes our bond different?", "cat": "Love"}, {"q": "What is one dream you would love to see us cheering each other toward?", "cat": "Love"}, {"q": "If you could freeze one moment we have shared, which one would you pick?", "cat": "Love"}, {"q": "What kind of person do you naturally trust fastest?", "cat": "Social"}, {"q": "What makes someone a genuinely good friend in your eyes?", "cat": "Social"}, {"q": "Do you prefer a tiny close circle or a huge social circle? Why?", "cat": "Social"}, {"q": "What social situation drains you the fastest?", "cat": "Social"}, {"q": "What social situation gives you the most energy?", "cat": "Social"}, {"q": "What is one green flag you notice quickly in people?", "cat": "Social"}, {"q": "What is one red flag you never ignore?", "cat": "Social"}, {"q": "How do you usually show someone that you care about them?", "cat": "Social"}, {"q": "What makes you feel included in a group?", "cat": "Social"}, {"q": "What makes you feel left out?", "cat": "Social"}, {"q": "What is one friendship lesson you learned the hard way?", "cat": "Social"}, {"q": "Do you forgive easily when a friend apologises sincerely?", "cat": "Social"}, {"q": "What is more important in friendship: honesty or comfort?", "cat": "Social"}, {"q": "How do you handle a friend who is upset with you?", "cat": "Social"}, {"q": "What kind of friend are you when someone is having a terrible day?", "cat": "Social"}, {"q": "What is your favourite kind of group hangout?", "cat": "Social"}, {"q": "Would you rather host people or be invited somewhere?", "cat": "Social"}, {"q": "What is one social skill you wish you had instantly?", "cat": "Social"}, {"q": "What kind of people make you laugh the most?", "cat": "Social"}, {"q": "What is one thing that instantly makes a conversation interesting?", "cat": "Social"}, {"q": "How do you know when you can be completely yourself around someone?", "cat": "Social"}, {"q": "What is one social boundary you think everyone should respect?", "cat": "Social"}, {"q": "Do you prefer texting, voice calls, or meeting in person?", "cat": "Social"}, {"q": "What is your favourite way to celebrate a friend's success?", "cat": "Social"}, {"q": "What is one quality you admire in your closest friends?", "cat": "Social"}, {"q": "What is one thing you would never tolerate from a friend?", "cat": "Social"}, {"q": "How important is privacy in friendships?", "cat": "Social"}, {"q": "Do you think people can be close friends even if they disagree about many things?", "cat": "Social"}, {"q": "What makes someone fun to be around?", "cat": "Social"}, {"q": "What is one social habit you want to improve?", "cat": "Social"}, {"q": "What is the funniest awkward social moment you remember?", "cat": "Social"}, {"q": "What is one compliment you genuinely love receiving from friends?", "cat": "Social"}, {"q": "How do you react when someone new joins your friend group?", "cat": "Social"}, {"q": "Would you rather have one best friend or five equally close friends?", "cat": "Social"}, {"q": "What makes a group feel like home to you?", "cat": "Social"}, {"q": "How do you prefer to solve misunderstandings with friends?", "cat": "Social"}, {"q": "What kind of people do you want around you in the future?", "cat": "Social"}, {"q": "What is one thing you think makes a friendship last?", "cat": "Social"}, {"q": "What is one social expectation you wish people would stop putting on everyone?", "cat": "Social"}, {"q": "What is one thing you appreciate about the people who support you?", "cat": "Social"}, {"q": "What part of your faith gives you the most peace?", "cat": "Faith"}, {"q": "What is one dua you make often?", "cat": "Faith"}, {"q": "What religious value do you want to carry into every part of your life?", "cat": "Faith"}, {"q": "What does being a good person mean to you beyond just words?", "cat": "Faith"}, {"q": "Which act of kindness feels the most meaningful to you?", "cat": "Faith"}, {"q": "What helps you reconnect with Allah when you feel distant?", "cat": "Faith"}, {"q": "What is one Islamic teaching you find especially beautiful?", "cat": "Faith"}, {"q": "What does gratitude look like in your everyday life?", "cat": "Faith"}, {"q": "What is one thing Ramadan teaches you every year?", "cat": "Faith"}, {"q": "What is your favourite part of Ramadan?", "cat": "Faith"}, {"q": "What is one small good deed you want to make a habit?", "cat": "Faith"}, {"q": "How do you think faith should influence how we treat other people?", "cat": "Faith"}, {"q": "What does sabr mean to you personally?", "cat": "Faith"}, {"q": "What is one thing you want to become better at spiritually?", "cat": "Faith"}, {"q": "What makes a dua feel especially personal to you?", "cat": "Faith"}, {"q": "What is one religious reminder you would want someone to give you gently?", "cat": "Faith"}, {"q": "How do you balance faith, studies/work, friends, and family?", "cat": "Faith"}, {"q": "What does modesty mean to you in character and behaviour?", "cat": "Faith"}, {"q": "What is one quality from the Prophet Muhammad ﷺ that inspires you?", "cat": "Faith"}, {"q": "What does forgiveness mean to you?", "cat": "Faith"}, {"q": "How important is intention when doing a good deed?", "cat": "Faith"}, {"q": "What is one thing you think people misunderstand about practicing faith?", "cat": "Faith"}, {"q": "What kind of charity or helping others feels closest to your heart?", "cat": "Faith"}, {"q": "What is one lesson from a difficult time that strengthened your faith?", "cat": "Faith"}, {"q": "What does tawakkul mean to you?", "cat": "Faith"}, {"q": "What is one habit you want to build before the next Ramadan?", "cat": "Faith"}, {"q": "What is one surah or ayah that comforts you?", "cat": "Faith"}, {"q": "What does having a peaceful heart mean to you?", "cat": "Faith"}, {"q": "How can two people encourage each other spiritually without judging each other?", "cat": "Faith"}, {"q": "What is one thing you are grateful to Allah for today?", "cat": "Faith"}, {"q": "What kind of environment helps you pray with more focus?", "cat": "Faith"}, {"q": "What is one spiritual goal you would like to achieve this year?", "cat": "Faith"}, {"q": "What does good character mean in Islam to you?", "cat": "Faith"}, {"q": "What is one thing you hope your future family learns about faith?", "cat": "Faith"}, {"q": "How do you think love and mercy fit into a religious life?", "cat": "Faith"}, {"q": "What is one dua you would make for someone you love?", "cat": "Faith"}, {"q": "What helps you stay hopeful when life feels uncertain?", "cat": "Faith"}, {"q": "What is one act of worship you want to understand more deeply?", "cat": "Faith"}, {"q": "What does patience look like when someone you love annoys you?", "cat": "Faith"}, {"q": "What is one faith-based value you hope we always protect in our relationship?", "cat": "Faith"}];
+  const wyrDeck = ["Would you rather have a surprise date planned for you or plan the perfect date yourself?", "Would you rather get 100 tiny good-morning texts or one huge heartfelt letter?", "Would you rather relive our funniest memory or create a brand-new one?", "Would you rather spend a whole day talking or a whole day doing something together without phones?", "Would you rather travel somewhere beautiful together or stay home and make the day special?", "Would you rather receive a handwritten note or a surprise photo album?", "Would you rather have matching bracelets or matching hoodies?", "Would you rather cook together or order your favourite food?", "Would you rather watch the sunrise together or stay up for the sunrise?", "Would you rather have one perfect date every month or tiny spontaneous moments every week?", "Would you rather be able to read my mind for one day or let me read yours for one day?", "Would you rather get a long voice note or a long paragraph?", "Would you rather have an inside joke nobody else understands or a song that instantly reminds you of us?", "Would you rather take 500 silly pictures or one perfect picture?", "Would you rather go on a road trip or have a cozy staycation?", "Would you rather have a surprise gift or choose your own gift?", "Would you rather dance badly together or sing badly together?", "Would you rather have a picnic or a fancy dinner?", "Would you rather receive flowers or your favourite snack?", "Would you rather talk until 3 AM or wake up early for a cute breakfast?", "Would you rather have a relationship full of jokes or full of deep conversations?", "Would you rather solve an argument immediately or take a little time to cool down first?", "Would you rather always know what I am thinking or always know what I am feeling?", "Would you rather share one giant dessert or have two separate desserts?", "Would you rather get matching phone wallpapers or matching profile pictures?", "Would you rather visit a city or a quiet countryside place together?", "Would you rather have a spontaneous adventure or a carefully planned day?", "Would you rather receive a cute nickname or invent one for me?", "Would you rather have a memory box or a shared digital album?", "Would you rather spend a rainy day watching movies or talking for hours?", "Would you rather be famous for being funny or famous for being kind?", "Would you rather have one best friend forever or a huge group of friends?", "Would you rather always know the right thing to say or always know the right thing to do?", "Would you rather be able to pause time or rewind one day?", "Would you rather have unlimited travel or unlimited food dates?", "Would you rather have a surprise party or a quiet celebration?", "Would you rather be the one who says 'I miss you' first or hear it first?", "Would you rather get a forehead kiss or a warm hug?", "Would you rather have a funny couple photo or a romantic couple photo?", "Would you rather share a playlist or share a journal?", "Would you rather have the same favourite movie or completely different tastes?", "Would you rather spend a week without social media or a week without streaming?", "Would you rather have your partner remember every tiny detail or surprise you with new things?", "Would you rather have a long-distance adventure or a nearby everyday love story?", "Would you rather be able to teleport to each other or instantly send any gift?", "Would you rather have one amazing trip or ten tiny day trips?", "Would you rather have matching mugs or matching keychains?", "Would you rather make a scrapbook together or a video montage?", "Would you rather hear 'I am proud of you' or 'I believe in you' when you need it most?", "Would you rather always have perfect communication or perfect chemistry?"];
+  let currentQuestionCategory = "All";
+  let questionHistory = [];
+  let wyrIndex = -1;
+
+  const qText = document.getElementById("questionText");
+  const qNumber = document.getElementById("questionNumber");
+  const qCategory = document.getElementById("questionCategory");
+  const qHistory = document.getElementById("questionHistory");
+  const qCard = document.getElementById("randomQuestionCard");
+  const wyrCard = document.getElementById("wyrCard");
+  const wyrText = document.getElementById("wyrText");
+  const wyrNumber = document.getElementById("wyrNumber");
+  const wyrA = document.getElementById("wyrA");
+  const wyrB = document.getElementById("wyrB");
+  const wyrResult = document.getElementById("wyrResult");
+
+  function filteredQuestions() {
+    return currentQuestionCategory === "All" ? questionDeck : questionDeck.filter(x => x.cat === currentQuestionCategory);
+  }
+
+  function showQuestion() {
+    const pool = filteredQuestions();
+    if (!pool.length) return;
+    let choices = pool.filter(x => !questionHistory.includes(x.q));
+    if (!choices.length) { questionHistory = []; choices = pool; }
+    const chosen = choices[Math.floor(Math.random()*choices.length)];
+    questionHistory.push(chosen.q);
+    if (questionHistory.length > 12) questionHistory.shift();
+    const position = questionDeck.findIndex(x => x.q === chosen.q) + 1;
+    qNumber.textContent = `QUESTION ${position} / ${questionDeck.length}`;
+    qCategory.textContent = chosen.cat;
+    qText.textContent = chosen.q;
+    qHistory.textContent = `${questionHistory.length} recent question${questionHistory.length===1?'':'s'} kept out of the next random pick.`;
+  }
+
+  function showWyr() {
+    let next = Math.floor(Math.random()*wyrDeck.length);
+    if (wyrDeck.length > 1) while(next === wyrIndex) next = Math.floor(Math.random()*wyrDeck.length);
+    wyrIndex = next;
+    const raw = wyrDeck[wyrIndex];
+    const clean = raw.replace(/^Would you rather\s*/i, '');
+    const parts = clean.split(' or ');
+    let a,b;
+    if (parts.length >= 2) {
+      const mid = Math.floor(parts.length/2);
+      // Most prompts are naturally A or B; use the final ' or ' as the divider.
+      const cut = clean.lastIndexOf(' or ');
+      a = clean.slice(0,cut).trim(); b = clean.slice(cut+4).replace(/[?]+$/,'').trim();
+    } else { a=clean; b='the opposite choice'; }
+    wyrNumber.textContent = `WOULD YOU RATHER ${wyrIndex+1} / ${wyrDeck.length}`;
+    wyrText.textContent = 'Would you rather…';
+    wyrA.textContent = a; wyrB.textContent = b; wyrResult.textContent='';
+    wyrA.dataset.answer=a; wyrB.dataset.answer=b;
+  }
+
+  document.querySelectorAll('#questionTabs button').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('#questionTabs button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    if (btn.dataset.game === 'wyr') {
+      qCard.style.display='none'; wyrCard.style.display='flex'; showWyr(); return;
+    }
+    currentQuestionCategory = btn.dataset.qcat;
+    qCard.style.display='flex'; wyrCard.style.display='none';
+    questionHistory=[];
+    qText.textContent='Click below to get a random question.';
+    qCategory.textContent=currentQuestionCategory;
+    qNumber.textContent=`QUESTION 1 / ${questionDeck.length}`;
+    qHistory.textContent='No questions asked yet.';
+  }));
+
+  document.getElementById('nextQuestion').addEventListener('click', showQuestion);
+  document.getElementById('shuffleAgain').addEventListener('click', showQuestion);
+  document.getElementById('nextWyr').addEventListener('click', showWyr);
+  [wyrA,wyrB].forEach(btn=>btn.addEventListener('click',()=>{
+    wyrResult.textContent=`You picked: “${btn.dataset.answer}” — now explain WHY 😭`;
+  }));
+
+  // Start with a random question so the game feels alive immediately.
+  showQuestion();
+</script>
+
 </body>
 </html>
