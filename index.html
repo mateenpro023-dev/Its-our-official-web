@@ -23,7 +23,7 @@
     content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;
     background-image:radial-gradient(#fff 1px,transparent 1px);background-size:42px 42px;
   }
-  .wrap{width:min(1050px,92%);margin:auto}
+  .wrap{width:min(1050px,92%);margin:auto;position:relative;z-index:1}
   section{padding:90px 0}
   .hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:70px 0}
   .eyebrow{letter-spacing:.25em;text-transform:uppercase;color:var(--accent2);font-size:.75rem}
@@ -82,13 +82,25 @@
   .moon:after{content:"";position:absolute;inset:0;border-radius:50%;background:#0a080d;transform:translateX(48%);}
   footer{text-align:center;padding:50px 0 80px;color:#9c9098}
 
-  .site-nav{position:sticky;top:0;z-index:1000;background:rgba(9,7,11,.82);border-bottom:1px solid var(--line);backdrop-filter:blur(18px);box-shadow:0 8px 30px rgba(0,0,0,.18)}
-  .nav-inner{width:min(1180px,94%);margin:auto;display:flex;align-items:center;gap:18px;min-height:64px}
+  /* AeroShards-inspired animated background layer for this standalone HTML file. */
+  #aero-shards-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2;display:block;background:#120F17;pointer-events:none}
+  .aero-shards-overlay{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 50% 20%,rgba(168,85,247,.10),transparent 38%),linear-gradient(180deg,rgba(9,7,11,.28),rgba(9,7,11,.72))}
+  body{background:#09070b}
+  .site-nav{position:sticky;top:12px;z-index:1000;width:min(1180px,94%);margin:12px auto 0;background:rgba(12,9,17,.72);border:1px solid rgba(255,255,255,.15);border-radius:20px;backdrop-filter:blur(20px);box-shadow:0 14px 45px rgba(0,0,0,.3)}
+  .nav-inner{width:100%;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:62px;padding:8px 12px}
   .nav-brand{color:#fff;text-decoration:none;font-weight:900;letter-spacing:.08em;white-space:nowrap}
-  .nav-links{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:7px 0}
-  .nav-links::-webkit-scrollbar{display:none}
-  .nav-links a{color:var(--muted);text-decoration:none;border:1px solid transparent;border-radius:999px;padding:9px 13px;font-size:.84rem;white-space:nowrap;transition:.2s ease}
-  .nav-links a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.07)}
+  .menu-toggle{width:48px;height:44px;border-radius:13px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;box-shadow:none}
+  .menu-toggle span{width:20px;height:2px;border-radius:2px;background:#fff;display:block;transition:transform .25s ease,opacity .2s ease}
+  .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-toggle.open span:nth-child(2){opacity:0}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-panel{position:absolute;right:12px;top:calc(100% + 10px);width:min(390px,calc(100vw - 32px));padding:10px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(12,9,17,.92);backdrop-filter:blur(22px);box-shadow:0 24px 70px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(-8px) scale(.98);transition:.22s ease}
+  .nav-panel.open{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+  .nav-links{display:grid;grid-template-columns:1fr;gap:4px}
+  .nav-links a{color:var(--muted);text-decoration:none;border:1px solid transparent;border-radius:12px;padding:12px 14px;font-size:.9rem;white-space:normal;transition:.2s ease}
+  .nav-links a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.07);transform:translateX(3px)}
+  .nav-close{width:100%;margin-top:5px;background:rgba(255,255,255,.06);color:#fff;border:1px solid var(--line);box-shadow:none}
+  .nav-close:hover{background:rgba(255,143,177,.12)}
   .games-section{padding-top:75px}
   .games-head{text-align:center;max-width:760px;margin:0 auto 30px}
   .game-tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0}
@@ -102,7 +114,7 @@
   .wyr-option{font-size:1.05rem;line-height:1.5;padding:18px 20px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;transition:.2s ease}
   .wyr-option:hover{transform:translateY(-3px);background:rgba(255,143,177,.12);border-color:rgba(255,143,177,.35)}
   .wyr-result{margin-top:20px;min-height:28px;color:var(--accent2);font-weight:700}
-  @media(max-width:750px){.nav-inner{display:block;padding:8px 0}.nav-brand{display:block;margin:0 0 6px 4px}.nav-links{padding-bottom:3px}.question-card{min-height:360px}}
+  @media(max-width:750px){.nav-inner{padding:8px 10px}.question-card{min-height:360px}}
   @media(max-width:750px){
     .grid,.reason-grid,.memory-placeholders{grid-template-columns:1fr !important}
     .counter{grid-template-columns:repeat(2,1fr)}
@@ -127,20 +139,27 @@
 </style>
 </head>
 <body>
-
+<canvas id="aero-shards-bg" aria-hidden="true"></canvas>
+<div class="aero-shards-overlay" aria-hidden="true"></div>
 
 <nav class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a class="nav-brand" href="#home">♡ MATEEJAS</a>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#love">Things I love about you</a>
-      <a href="#wheel-section">Spin the wheel</a>
-      <a href="#music">Music</a>
-      <a href="#memories">Memories</a>
-      <a href="#letter">Mini Letter</a>
-      <a href="#games">Games</a>
-      <a href="#october">October 3</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" type="button">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-panel" id="navPanel" aria-hidden="true">
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#love">Things I love about you</a>
+        <a href="#wheel-section">Spin the wheel</a>
+        <a href="#music">Music</a>
+        <a href="#memories">Memories</a>
+        <a href="#letter">Mini Letter</a>
+        <a href="#games">Games</a>
+        <a href="#october">October 3</a>
+      </div>
+      <button class="nav-close" id="navClose" type="button">Close menu ×</button>
     </div>
   </div>
 </nav>
@@ -382,6 +401,64 @@
 
 
 <footer></footer>
+
+<script>
+/* AeroShards-style standalone background.
+   The command `npx shadcn@latest add @react-bits/AeroShards-JS-CSS` is for a React app;
+   this HTML version uses a dependency-free canvas adaptation so the page remains one file. */
+(() => {
+  const canvas=document.getElementById('aero-shards-bg');
+  const ctx=canvas.getContext('2d');
+  let w=0,h=0,dpr=1,particles=[],mouse={x:-9999,y:-9999},raf;
+  const COUNT=85;
+  function resize(){
+    dpr=Math.min(devicePixelRatio||1,2); w=innerWidth; h=innerHeight;
+    canvas.width=w*dpr; canvas.height=h*dpr; canvas.style.width=w+'px'; canvas.style.height=h+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function reset(p,initial=false){
+    p.x=Math.random()*w; p.y=initial?Math.random()*h:h+Math.random()*120;
+    p.z=.35+Math.random()*1.4; p.len=18+Math.random()*75; p.w=.7+Math.random()*2.4;
+    p.vx=(-.12+Math.random()*.24)*p.z; p.vy=-(.18+Math.random()*.55)*p.z;
+    p.angle=Math.random()*Math.PI*2; p.spin=(-.004+Math.random()*.008);
+    p.alpha=.12+Math.random()*.5;
+  }
+  function init(){particles=Array.from({length:COUNT},()=>{const p={};reset(p,true);return p})}
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    const g=ctx.createRadialGradient(w*.5,h*.18,0,w*.5,h*.18,Math.max(w,h)*.8);
+    g.addColorStop(0,'rgba(168,85,247,.12)');g.addColorStop(.42,'rgba(137,106,189,.055)');g.addColorStop(1,'rgba(18,15,23,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+    for(const p of particles){
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,dist=Math.hypot(dx,dy),radius=170;
+      if(dist<radius){const force=(1-dist/radius)*.75;p.x+=dx/dist*force;p.y+=dy/dist*force}
+      p.x+=p.vx;p.y+=p.vy;p.angle+=p.spin;
+      if(p.y<-100||p.x<-120||p.x>w+120) reset(p);
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.angle);
+      const grad=ctx.createLinearGradient(-p.len/2,0,p.len/2,0);grad.addColorStop(0,'rgba(137,106,189,0)');grad.addColorStop(.5,`rgba(168,85,247,${p.alpha})`);grad.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle=grad;ctx.beginPath();ctx.moveTo(-p.len/2,0);ctx.lineTo(p.len/2,-p.w);ctx.lineTo(p.len/2,p.w);ctx.closePath();ctx.fill();ctx.restore();
+    }
+    raf=requestAnimationFrame(draw);
+  }
+  addEventListener('resize',resize);addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+  resize();init();draw();
+  addEventListener('beforeunload',()=>cancelAnimationFrame(raf));
+})();
+
+// Compact three-line navigation menu.
+(() => {
+  const toggle=document.getElementById('menuToggle'), panel=document.getElementById('navPanel'), close=document.getElementById('navClose');
+  const links=panel.querySelectorAll('a');
+  function setOpen(open){
+    toggle.classList.toggle('open',open);panel.classList.toggle('open',open);
+    toggle.setAttribute('aria-expanded',String(open));panel.setAttribute('aria-hidden',String(!open));
+  }
+  toggle.addEventListener('click',()=>setOpen(!panel.classList.contains('open')));
+  close.addEventListener('click',()=>setOpen(false));
+  links.forEach(a=>a.addEventListener('click',()=>setOpen(false)));
+  document.addEventListener('click',e=>{if(!e.target.closest('.site-nav'))setOpen(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+})();
+</script>
 
 <script>
   // 4 September 2026, around 11:00 AM.
